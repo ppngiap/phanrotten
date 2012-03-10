@@ -115,3 +115,7 @@ form label {
 form #submit {
   margin-left: 150px;
 }
+
+table#movies th.hilite {
+  background-color: yellow;
+}

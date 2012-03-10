@@ -9,3 +9,9 @@ tmp/
 # bundler state
 /.bundle
 /vendor/bundle/
+
+#idea
+.idea
+
+#tom
+tom/

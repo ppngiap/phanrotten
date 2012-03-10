@@ -1,4 +1,4 @@
 %html
 %h1#title Hello
-
+%th.hilite
 %a#title{:href => "http://test"} link
