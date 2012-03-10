@@ -9,11 +9,12 @@ class MoviesController < ApplicationController
   def index
     @order_by = params[:sort_by]
     all_movies = Movie.order(@order_by)
-    ratings = params[:ratings]
+    @ratings = params[:ratings]
     @movies = []
-    if (ratings != nil)
-      ratings.each do |k, v|
-        all_movies.each do |m|
+    if (@ratings != nil)
+      all_movies.each do |m|
+        @ratings.each do |k, v|
+          next if not v.eql?("1")
           if (m.rating.eql?(k))
             @movies.push(m)
           end
@@ -26,6 +27,7 @@ class MoviesController < ApplicationController
     all_movies.each do |m|
       @all_ratings.push(m.rating) unless @all_ratings.include?(m.rating)
     end
+    @all_ratings.sort!()
   end
 
   def new
