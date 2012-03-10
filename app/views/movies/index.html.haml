@@ -8,7 +8,7 @@
         %a.title_header{:href => sort_by('title') } Movie Title
       %th Rating
       %th
-        %a.title_header{:href => sort_by('release_date') } Release Date
+        %a.release_date_header{:href => sort_by('release_date') } Release Date
       %th More Info
   %tbody
     - @movies.each do |movie|
