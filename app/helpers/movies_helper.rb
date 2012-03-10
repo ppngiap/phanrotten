@@ -35,4 +35,6 @@ module MoviesHelper
     v = @ratings[r]
     return v != nil
   end
+
+
 end

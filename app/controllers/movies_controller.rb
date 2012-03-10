@@ -6,7 +6,35 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
   end
 
+  private
+  def use_session(name)
+    redirect = false
+    p = params[name]
+    if (p == nil)
+      s = session[name]
+      if (s != nil)
+        params[name] = s
+        redirect = true
+      end
+    else
+      session[name] = p
+    end
+    return redirect
+  end
+
+  private
+  def redirect_if_needed
+    ratings = use_session(:ratings)
+    sort_by = use_session(:sort_by)
+    if (ratings || sort_by)
+      puts params.to_query
+      redirect_to movies_path + "?" + params.to_query
+    end
+  end
+
+  public
   def index
+    redirect_if_needed
     @order_by = params[:sort_by]
     all_movies = Movie.order(@order_by)
     @ratings = params[:ratings]
